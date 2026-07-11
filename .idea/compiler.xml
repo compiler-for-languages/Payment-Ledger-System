@@ -2,7 +2,11 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+<<<<<<< HEAD
       <profile name="Annotation profile for project" enabled="true">
+=======
+      <profile name="Annotation profile for Payment Ledger and Wallet System" enabled="true">
+>>>>>>> cfe6d48e6f2ad4ff10d6172edc41c0968d8db022
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
