@@ -2,24 +2,23 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-<<<<<<< HEAD
-      <profile name="Annotation profile for project" enabled="true">
-=======
       <profile name="Annotation profile for Payment Ledger and Wallet System" enabled="true">
->>>>>>> cfe6d48e6f2ad4ff10d6172edc41c0968d8db022
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="project" />
+        <module name="project1" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="project" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="project" options="-parameters" />
+      <module name="project1" options="-parameters" />
     </option>
   </component>
 </project>
