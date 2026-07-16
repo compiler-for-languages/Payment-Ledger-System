@@ -2,7 +2,6 @@ package com.infotact.project1.controller;
 
 import com.infotact.project1.dto.response.AuditLogResponseDTO;
 import com.infotact.project1.dto.response.DashboardStatsResponseDTO;
-import com.infotact.project1.dto.response.TransactionResponseDTO;
 import com.infotact.project1.dto.response.TransactionSummaryResponseDTO;
 import com.infotact.project1.dto.response.UserResponseDTO;
 import com.infotact.project1.dto.response.WalletResponseDTO;
