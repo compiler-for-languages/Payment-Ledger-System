@@ -2,6 +2,7 @@ package com.infotact.project1.service;
 
 import com.infotact.project1.dto.request.AmountRequestDTO;
 import com.infotact.project1.dto.request.TransferRequestDTO;
+import com.infotact.project1.dto.response.TransactionResponseDTO;
 import com.infotact.project1.enums.*;
 import com.infotact.project1.exception.BusinessExceptions;
 import com.infotact.project1.model.LedgerEntry;
