@@ -19,3 +19,5 @@ public class WalletResponseDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
+
+
