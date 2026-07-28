@@ -1,0 +1,22 @@
+services:
+  # Using local PostgreSQL as per Option 1, so Docker Postgres is commented out
+  # postgres:
+  #   image: postgres:16
+  #   container_name: project1-postgres
+  #   environment:
+  #     POSTGRES_DB: project1_db
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: project1-redis
+    ports:
+      - "6380:6379" # Host 6380 -> Container 6379
+
+volumes:
+  postgres_data:
