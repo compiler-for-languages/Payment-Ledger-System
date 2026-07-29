@@ -9,13 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="project1 (1)" />
         <module name="project1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="project" target="17" />
+      <module name="project1 (1)" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
