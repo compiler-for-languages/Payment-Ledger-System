@@ -5,6 +5,6 @@ export function LoadingScreen() {
         <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--spotify-primary)]" />
         Initializing Payment Ledger & Wallet System
       </div>
-    </div>
+    3</div>
   );
 }
