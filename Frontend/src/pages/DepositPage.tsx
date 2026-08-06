@@ -33,7 +33,7 @@ export function DepositPage() {
 
   return (
     <div className="space-y-6" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <PageHeader title="Testing sync" description="Create a wallet credit operation with proper validation." />
+      <PageHeader title="deposit" description="Create a wallet credit operation with proper validation." />
       <form onSubmit={submit} className="max-w-md space-y-3" style={{ maxWidth: '28rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <div>
           <label style={{ display: 'block', fontSize: '0.875rem', color: 'var(--enterprise-text-muted)', marginBottom: '0.5rem' }}>
