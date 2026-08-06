@@ -5,8 +5,9 @@ import { transactionService } from "../services/TransactionService";
 export function TransferPage() {
   const [receiverId, setReceiverId] = useState("");
   const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState<"success" | "error" | "">("");
   const [loading, setLoading] = useState(false);
 
   const submit = async (event: FormEvent) => {
@@ -16,15 +17,22 @@ export function TransferPage() {
       const response = await transactionService.transfer({
         receiverUserId: Number(receiverId),
         description,
-        amount,
+        amount: Number(amount),
         idempotencyKey: crypto.randomUUID(),
       });
-      setMessage(`Transfer successful. Reference: ${response.referenceNumber}`);
-      setReceiverId("");
-      setDescription("");
-      setAmount(0);
+      if (response.status === "FAILED") {
+        setMessage("Transfer failed. Insufficient wallet balance.");
+        setMessageType("error");
+      } else {
+        setMessage(`Transfer successful. Reference: ${response.referenceNumber}`);
+        setMessageType("success");
+        setReceiverId("");
+        setDescription("");
+        setAmount("");
+      }
     } catch (err: any) {
       setMessage(err.response?.data?.message || "Transfer failed");
+      setMessageType("error");
     } finally {
       setLoading(false);
     }
@@ -62,7 +70,7 @@ export function TransferPage() {
           <input
             type="number"
             value={amount}
-            onChange={(event) => setAmount(Number(event.target.value))}
+            onChange={(event) => setAmount(event.target.value)}
             style={{
               width: '100%',
               borderRadius: '8px',
@@ -122,11 +130,11 @@ export function TransferPage() {
       {message ? (
         <p style={{
           fontSize: '0.875rem',
-          color: message.includes("failed") ? 'var(--enterprise-danger)' : 'var(--enterprise-success)',
+          color: messageType === "error" ? 'var(--enterprise-danger)' : 'var(--enterprise-success)',
           padding: '1rem',
           borderRadius: '8px',
-          background: message.includes("failed") ? 'rgba(239, 68, 68, 0.1)' : 'rgba(34, 197, 94, 0.1)',
-          border: `1px solid ${message.includes("failed") ? 'var(--enterprise-danger)' : 'var(--enterprise-success)'}`
+          background: messageType === "error" ? 'rgba(239, 68, 68, 0.1)' : 'rgba(34, 197, 94, 0.1)',
+          border: `1px solid ${messageType === "error" ? 'var(--enterprise-danger)' : 'var(--enterprise-success)'}`
         }}>
           {message}
         </p>

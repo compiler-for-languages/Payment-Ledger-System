@@ -3,21 +3,29 @@ import { PageHeader } from "../components/PageHeader";
 import { transactionService } from "../services/TransactionService";
 
 export function WithdrawPage() {
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState<"success" | "error" | "">("");
   const [loading, setLoading] = useState(false);
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
     setLoading(true);
     try {
-      const response = await transactionService.withdraw(amount, description || "Withdraw");
-      setMessage(`Withdraw successful. Reference: ${response.referenceNumber}`);
-      setAmount(0);
-      setDescription("");
+      const response = await transactionService.withdraw(Number(amount), description || "Withdraw");
+      if (response.status === "FAILED") {
+        setMessage("Withdrawal failed. Insufficient wallet balance.");
+        setMessageType("error");
+      } else {
+        setMessage(`Withdraw successful. Reference: ${response.referenceNumber}`);
+        setMessageType("success");
+        setAmount("");
+        setDescription("");
+      }
     } catch (err: any) {
       setMessage(err.response?.data?.message || "Withdraw failed");
+      setMessageType("error");
     } finally {
       setLoading(false);
     }
@@ -34,7 +42,7 @@ export function WithdrawPage() {
           <input
             type="number"
             value={amount}
-            onChange={(event) => setAmount(Number(event.target.value))}
+            onChange={(event) => setAmount(event.target.value)}
             style={{
               width: '100%',
               borderRadius: '8px',
@@ -90,11 +98,11 @@ export function WithdrawPage() {
       {message ? (
         <p style={{
           fontSize: '0.875rem',
-          color: message.includes("failed") ? 'var(--enterprise-danger)' : 'var(--enterprise-success)',
+          color: messageType === "error" ? 'var(--enterprise-danger)' : 'var(--enterprise-success)',
           padding: '1rem',
           borderRadius: '8px',
-          background: message.includes("failed") ? 'rgba(239, 68, 68, 0.1)' : 'rgba(34, 197, 94, 0.1)',
-          border: `1px solid ${message.includes("failed") ? 'var(--enterprise-danger)' : 'var(--enterprise-success)'}`
+          background: messageType === "error" ? 'rgba(239, 68, 68, 0.1)' : 'rgba(34, 197, 94, 0.1)',
+          border: `1px solid ${messageType === "error" ? 'var(--enterprise-danger)' : 'var(--enterprise-success)'}`
         }}>
           {message}
         </p>
